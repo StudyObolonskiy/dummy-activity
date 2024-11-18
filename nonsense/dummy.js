@@ -5,3 +5,9 @@ const dummy = () => {
         }, 1500);
     }); 
 }
+
+const nonsense = () => {
+    dummy().then((result) => {
+        console.log(result);
+    });
+}
