@@ -11,3 +11,5 @@ const nonsense = () => {
         console.log(result);
     });
 }
+
+nonsense();
