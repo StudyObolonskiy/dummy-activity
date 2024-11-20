@@ -13,3 +13,5 @@ const nonsense = () => {
 }
 
 nonsense();
+
+console.log('Hello Dummy!');
