@@ -1,0 +1,16 @@
+#root {
+    width: 100%;
+}
+
+.table-header {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  text-align: center;
+  padding: 50px 30px;
+  border-bottom: 1px solid gray;
+}
