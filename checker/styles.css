@@ -14,3 +14,10 @@
   padding: 50px 30px;
   border-bottom: 1px solid gray;
 }
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 20px;
+}

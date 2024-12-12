@@ -97,6 +97,27 @@ const  createTableRow = (cellData, rowStyle, cellStyle) => {
     return tableRow;
 }
 
+const showTotalSpending = () => {
+    const totalSpendingElement = createElement('div', 'total-spending', `Total spending: ${totalSpending()}`);
+    return totalSpendingElement;
+}
+
+const showTotalProfit = () => {
+    const totalProfitElement = createElement('div', 'total-profit', `Total profit: ${totalProfit()}`);
+    return totalProfitElement;
+}
+
+const showIncome = () => {
+    const totalIncomeElement = createElement('div', 'total-income', `Total income: ${totalProfit() - totalSpending()}`);
+    return totalIncomeElement;
+}
+
+const createResult = () => {
+    const result = createElement('div', 'result', '');
+    addElements(result, showTotalSpending(), showTotalProfit(), showIncome());
+    return result;
+}
+
 const createTable = () => {
     const wrapper = createElement('div', 'wrapper', '');
     const tableHeader = createTableRow(['Project', 'Spending', 'Profit', 'Status', 'Income'], 'table-header', 'table-header-cell');
@@ -109,4 +130,4 @@ const createTable = () => {
     return wrapper;
 }
 
-root.appendChild(createTable());
+root.append(createTable(), createResult());
