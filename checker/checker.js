@@ -39,7 +39,7 @@ const profitData = [
     },
     {
         projectName: 'PAWS',
-        spending: 10,
+        spending: 11.8,
         profit: 0,
         isFinished: false
     },
@@ -52,6 +52,12 @@ const profitData = [
     {
         projectName: 'Earn',
         spending: 0,
+        profit: 0,
+        isFinished: false
+    },    
+    {
+        projectName: 'Duck My Duck',
+        spending: 1.25,
         profit: 0,
         isFinished: false
     },
