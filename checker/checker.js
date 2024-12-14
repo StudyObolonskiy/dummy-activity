@@ -64,7 +64,7 @@ const profitData = [
     {
         projectName: 'TONCO dogs/usdt pool',
         spending: 2.254,
-        profit: 50,
+        profit: 60,
         isFinished: true
     }
 ]
