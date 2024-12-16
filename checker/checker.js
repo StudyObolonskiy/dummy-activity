@@ -39,7 +39,7 @@ const profitData = [
     },
     {
         projectName: 'PAWS',
-        spending: 11.8,
+        spending: 12.1,
         profit: 0,
         isFinished: false
     },
