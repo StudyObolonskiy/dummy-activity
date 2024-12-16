@@ -9,7 +9,7 @@ const profitData = [
     },
     {
         projectName: 'NotPixel',
-        spending: 17.08,
+        spending: 18.18,
         profit: 0,
         isFinished: false
     },
