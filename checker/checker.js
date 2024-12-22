@@ -22,7 +22,7 @@ const profitData = [
     {
         projectName: 'Ton Station',
         spending: 6.5,
-        profit: 0,
+        profit: 17.71,
         isFinished: false
     },
     {
