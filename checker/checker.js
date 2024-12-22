@@ -85,12 +85,14 @@ const addElements = (parent, ...elements) => {
     })
 }
 
+const rounding = (number) => Math.round(number * 1000) / 1000
+
 const totalSpending = () => {
-   return profitData.reduce((acc, item) => acc + item.spending, 0);
+    return rounding(profitData.reduce((acc, item) => acc + item.spending, 0));
 }
 
 const totalProfit = () => {
-    return profitData.reduce((acc, item) => acc + item.profit, 0);
+    return rounding(profitData.reduce((acc, item) => acc + item.profit, 0));
 }
 
 const  createTableRow = (cellData, rowStyle, cellStyle) => {
@@ -114,7 +116,7 @@ const showTotalProfit = () => {
 }
 
 const showIncome = () => {
-    const totalIncomeElement = createElement('div', 'total-income', `Total income: ${totalProfit() - totalSpending()}`);
+    const totalIncomeElement = createElement('div', 'total-income', `Total income: ${rounding(totalProfit() - totalSpending())}`);
     return totalIncomeElement;
 }
 
