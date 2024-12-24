@@ -66,7 +66,13 @@ const profitData = [
         spending: 2.254,
         profit: 60,
         isFinished: true
-    }
+    },
+    {
+        projectName: 'NewYear Open League Season',        
+        spending: 0,
+        profit: 45,
+        isFinished: true
+    },
 ]
 
 const createElement = (tag, className, text) => {
