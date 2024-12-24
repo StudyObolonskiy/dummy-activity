@@ -45,7 +45,7 @@ const profitData = [
     },
     {
         projectName: 'Goblin Mine',
-        spending: 6.6,
+        spending: 7.49,
         profit: 0,
         isFinished: false
     },
