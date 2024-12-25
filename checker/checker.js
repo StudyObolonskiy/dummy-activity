@@ -57,7 +57,7 @@ const profitData = [
     },    
     {
         projectName: 'Duck My Duck',
-        spending: 7.55,
+        spending: 11.74,
         profit: 0,
         isFinished: false
     },
