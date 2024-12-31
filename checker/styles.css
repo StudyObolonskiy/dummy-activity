@@ -3,8 +3,11 @@
 }
 
 .table-header {
-    text-transform: uppercase;
-    font-weight: bold;
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: whitesmoke;
 }
 
 .table-row {

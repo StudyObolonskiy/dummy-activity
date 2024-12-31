@@ -18,7 +18,7 @@ const profitData = [
     },
     {
         projectName: 'Blum',
-        spending: 2.7,
+        spending: 3.2,
         profit: 6,
         isFinished: false,
         profitToken: 'usdt'
@@ -54,9 +54,9 @@ const profitData = [
     {
         projectName: 'Goblin Mine',
         spending: 7.49,
-        profit: 0,
+        profit: 1.3,
         isFinished: false,
-        profitToken: 'usdt'
+        profitToken: 'ton'
     },
     {
         projectName: 'Earn',
@@ -95,6 +95,14 @@ const profitData = [
     }
 ]
 
+async function getTonPrice() {
+	const response = await fetch('https://api.coingecko.com/api/v3/coins/the-open-network');
+	const data = await response.json();
+    const currentPrice = data.market_data.current_price.usd;
+    
+	return currentPrice
+}
+
 const createElement = (tag, className, text) => {
     const element = document.createElement(tag);
     element.classList.add(className);
@@ -115,13 +123,13 @@ const totalSpending = () => {
     return rounding(profitData.reduce((acc, item) => acc + item.spending, 0));
 }
 
-const getUSDTProfit = (item) => {
+const getUSDTProfit = (item, tonPrice) => {
     const usdtProfit = item.profitToken === 'usdt' ? item.profit : item.profit * tonPrice;
     return rounding(usdtProfit);
 }
 
-const totalProfit = () => {
-    return rounding(profitData.reduce((acc, item) => acc + getUSDTProfit(item), 0));
+const totalProfit = (tonPrice) => {
+    return rounding(profitData.reduce((acc, item) => acc + getUSDTProfit(item, tonPrice), 0));
 }
 
 const  createTableRow = (cellData, rowStyle, cellStyle) => {
@@ -139,34 +147,41 @@ const showTotalSpending = () => {
     return totalSpendingElement;
 }
 
-const showTotalProfit = () => {
-    const totalProfitElement = createElement('div', 'total-profit', `Total profit: ${totalProfit()}`);
+const showTotalProfit = (tonPrice) => {
+    const totalProfitElement = createElement('div', 'total-profit', `Total profit: ${totalProfit(tonPrice)}`);
     return totalProfitElement;
 }
 
-const showIncome = () => {
-    const totalIncomeElement = createElement('div', 'total-income', `Total income: ${rounding(totalProfit() - totalSpending())}`);
+const showIncome = (tonPrice) => {
+    const totalIncomeElement = createElement('div', 'total-income', `Total income: ${rounding(totalProfit(tonPrice) - totalSpending())}`);
     return totalIncomeElement;
 }
 
-const createTable = () => {
+const createTable = (tonPrice) => {
     const wrapper = createElement('div', 'wrapper', '');
-    const tableHeader = createTableRow(['Project', 'Spending', 'Profit', 'Status', 'Income'], 'table-header', 'table-header-cell');
+    const tableHeader = createTableRow(['Project', 'Spending', 'Profit', 'Status', 'Income', 'Profit token'], 'table-header', 'table-header-cell');
     const tableBody = profitData.map((item) => {
         const { projectName, spending, profit, isFinished } = item;
-        const usdtProfit = getUSDTProfit(item);
+        const usdtProfit = getUSDTProfit(item, tonPrice);
         
-        const tableRow = createTableRow([projectName, spending, profit, isFinished ? 'Finished' : 'In progress', usdtProfit - spending], 'table-row', 'table-cell');
+        const tableRow = createTableRow([projectName, spending, profit, isFinished ? 'Finished' : 'In progress', rounding(usdtProfit - spending), item.profitToken], 'table-row', 'table-cell');
         return tableRow;
     })
     addElements(wrapper, tableHeader, ...tableBody);
     return wrapper;
 }
 
-const createResult = () => {
+const createResult = (tonPrice) => {
     const result = createElement('div', 'result', '');
-    addElements(result, showTotalSpending(), showTotalProfit(), showIncome());
+    addElements(result, showTotalSpending(), showTotalProfit(tonPrice), showIncome(tonPrice));
     return result;
 }
 
-root.append(createTable(), createResult());
+const render = async () => {
+    const tonPrice = await getTonPrice();
+    const priceBlock = createElement('div', 'price', `TON price: ${tonPrice} $`);
+
+    root.append(priceBlock ,createTable(tonPrice), createResult(tonPrice));
+}
+
+render()
