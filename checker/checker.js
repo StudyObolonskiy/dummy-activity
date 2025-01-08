@@ -1,7 +1,6 @@
 const root = document.getElementById('root');
-const tonPrice = 5.55
 
-const profitData = [
+const projectsData = [
     {
         projectName: 'Hamster',
         spending: 0,
@@ -10,9 +9,9 @@ const profitData = [
         profitToken: 'usdt'
     },
     {
-        projectName: 'NotPixel',
+        projectName: 'NotPixel (330 ждут продажи по цене от 0.4)',
         spending: 18.18,
-        profit: 0,
+        profit: 45,
         isFinished: false,
         profitToken: 'usdt'
     },
@@ -20,7 +19,7 @@ const profitData = [
         projectName: 'Blum',
         spending: 3.2,
         profit: 6,
-        isFinished: false,
+        isFinished: true,
         profitToken: 'usdt'
     },
     {
@@ -55,15 +54,8 @@ const profitData = [
         projectName: 'Goblin Mine',
         spending: 7.49,
         profit: 1.3,
-        isFinished: false,
+        isFinished: true,
         profitToken: 'ton'
-    },
-    {
-        projectName: 'Earn',
-        spending: 0,
-        profit: 0,
-        isFinished: false,
-        profitToken: 'usdt'
     },    
     {
         projectName: 'Duck My Duck',
@@ -87,13 +79,16 @@ const profitData = [
         profitToken: 'ton'
     },
     {
-        projectName: 'Tonco contest',
+        projectName: 'Tonco contest (конкурс со скринами ликвидности)',
         spending: 0,
         profit: 25,
         isFinished: true,
         profitToken: 'usdt'
     }
 ]
+
+const profitData = [...projectsData].sort((a, b) => b.isFinished - a.isFinished);
+
 
 async function getTonPrice() {
 	const response = await fetch('https://api.coingecko.com/api/v3/coins/the-open-network');
