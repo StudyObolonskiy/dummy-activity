@@ -46,7 +46,7 @@ const projectsData = [
     {
         projectName: 'PAWS',
         spending: 12.1,
-        profit: 0,
+        profit: 6,
         isFinished: false,
         profitToken: 'usdt'
     },
